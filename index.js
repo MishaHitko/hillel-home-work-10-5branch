@@ -1,90 +1,62 @@
-const numbers = [16, -37, 54, -4, 72, -56, 47, 4, -16, 25, -37, 46, 4, -51, 27, -63, 4, -54, 76, -4, 12, -35, 4, 47];
-const positiveNum = numbers.reduce((acc,number) => {
-    if (number > 0) {
-        acc.num += 1;
-        acc.sum = acc.sum + number;
+let users = [
+    {
+        "index": 0,
+        "isActive": true,
+        "balance": "$2,226.60",
+        "name": "Eugenia Sawyer",
+        "gender": "female",
+        "phone": "+1 (840) 583-3207",
+        "address": "949 John Street, Rose, Puerto Rico, 1857"
+    },
+    {
+        "index": 1,
+        "isActive": true,
+        "balance": "$2,613.77",
+        "name": "Pauline Gallegos",
+        "gender": "female",
+        "phone": "+1 (985) 593-3328",
+        "address": "328 Greenpoint Avenue, Torboy, North Dakota, 6857"
+    },
+    {
+        "index": 2,
+        "isActive": false,
+        "balance": "$3,976.41",
+        "name": "Middleton Chaney",
+        "gender": "male",
+        "phone": "+1 (995) 591-2478",
+        "address": "807 Fleet Walk, Brutus, Arkansas, 9783"
+    },
+    {
+        "index": 3,
+        "isActive": true,
+        "balance": "$1,934.58",
+        "name": "Burns Poole",
+        "gender": "male",
+        "phone": "+1 (885) 559-3422",
+        "address": "730 Seba Avenue, Osage, Alabama, 6290"
+    },
+    {
+        "index": 4,
+        "isActive": true,
+        "balance": "$3,261.65",
+        "name": "Mcfadden Horne",
+        "gender": "male",
+        "phone": "+1 (942) 565-3988",
+        "address": "120 Scholes Street, Kirk, Michigan, 1018"
+    },
+    {
+        "index": 5,
+        "isActive": false,
+        "balance": "$1,790.56",
+        "name": "Suzette Lewis",
+        "gender": "female",
+        "phone": "+1 (837) 586-3283",
+        "address": "314 Dunne Place, Bawcomville, Guam, 9053"
     }
-    return acc;
-}, {sum: 0, num: 0});
-console.log('Сумма позитивных елементов:', positiveNum.sum, 'Количество позитивных елементов:', positiveNum.num);
+];
+const numBalance = (balance) => {
+    return +balance.slice(1).split(',').join('')
+};
+const sortUsers = users.filter(user => numBalance(user.balance) > 2000).map(user => user.phone);
+const sumBalanceUsers = users.reduce((acc ,user) =>  acc += numBalance(user.balance), 0);
 
-const minNum = numbers.reduce((acc, number, index) => {
-    if (acc.num > number) {
-        acc.num = number;
-        acc.index = index;
-    }
-    return acc;
-}, {num: 0, index: 0});
-console.log('Минимальное число:', minNum.num,'Индекс минимального числа:', minNum.index);
-
-const maxNum = numbers.reduce((acc, number, index) => {
-    if (acc.num < number) {
-        acc.num = number;
-        acc.index = index;
-    }
-    return acc;
-}, {num: 0, index: 0});
-console.log('Максимальное число:', maxNum.num,'Индекс максимального числа:', maxNum.index);
-
-const negativeNum = numbers.reduce((acc,number) => {
-    if (number < 0) {
-        acc += 1;
-    }
-    return acc;
-}, 0);
-console.log('Количество негативных елементов:', negativeNum);
-
-const oddNum = numbers.reduce((acc,number) => {
-    if (number % 2 !== 0 && number > 0) {
-        acc += 1;
-    }
-    return acc;
-}, 0);
-console.log('Количество непарных позитивных елементов:', oddNum);
-
-const evenNum = numbers.reduce((acc,number) => {
-    if (number % 2 === 0 && number > 0) {
-        acc += 1;
-    }
-    return acc;
-}, 0);
-console.log('Количество парных позитивных елементов:',evenNum);
-
-const evenNumSum = numbers.reduce((acc,number) => {
-    if (number % 2 === 0 && number > 0) {
-        acc += number;
-    }
-    return acc;
-}, 0);
-console.log('Сумма парных позитивных елементов:',evenNumSum);
-
-const oddNumSum = numbers.reduce((acc,number) => {
-    if (number % 2 !== 0 && number > 0) {
-        acc += number;
-    }
-    return acc;
-}, 0);
-console.log('Сумма непарных позитивных елементов:',oddNumSum);
-
-const multiNumSum = numbers.reduce((acc,number) => {
-    if (number > 0) {
-        acc *= number;
-    }
-    return acc;
-}, 1);
-console.log('Умножение всех позитивных елементов:',multiNumSum);
-
-let maxNumber = 0;
-const maxNumArray = numbers.map((number) => {
-    if (number > maxNumber) {
-        maxNumber = number;
-    }
-    return number;
-}).map((number) => {
-    if (number < maxNumber) {
-        number = 0;
-    }
-    return number;
-})
-
-console.log('Найден наибольший елемент массива, остальные обнулены:',maxNumArray);
